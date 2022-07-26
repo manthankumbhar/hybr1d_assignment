@@ -14,7 +14,7 @@ export default function Home() {
     async function fetchData() {
       setLoading(true);
       const res = await axios.get(
-        `http://hn.algolia.com/api/v1/search?query=${query}&page=${page}`
+        `https://hn.algolia.com/api/v1/search?query=${query}&page=${page}`
       );
       setData(res.data["hits"]);
       setLoading(false);
