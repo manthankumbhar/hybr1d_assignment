@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router";
+import { Link } from "react-router-dom";
 import "./App.scss";
 import Home from "./components/Home/Home";
 import Post from "./components/Post/Post";
@@ -6,7 +7,9 @@ import Post from "./components/Post/Post";
 function App() {
   return (
     <div className="App">
-      <h1 className="App__h1">Hybr1d Assignment</h1>
+      <Link to="/" className="App__link">
+        Hybr1d Assignment
+      </Link>
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/post/:id" element={<Post />} />

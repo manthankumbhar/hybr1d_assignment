@@ -10,9 +10,14 @@ body {
 .App {
   text-align: center;
 
-  &__h1 {
-    text-align: left;
-    margin-left: 2rem;
-    margin-bottom: 3rem;
+  &__link {
+    font-size: 2rem;
+    margin: 2rem;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    width: 20rem;
+
+    display: flex;
   }
 }

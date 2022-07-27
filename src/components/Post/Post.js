@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import "./Post.scss";
+import homeImg from "../../assets/home.png";
 
 export default function Post() {
   const { id } = useParams();
@@ -38,17 +39,29 @@ export default function Post() {
       ) : (
         <div className="post__content">
           <Link to="/" className="post__content--homeLink">
-            Home
+            <img className="post__content--img" alt="home" src={homeImg} />
           </Link>
-          <h1 className="post__content--h1">
-            {title === null ? "None" : title}
-          </h1>
+          <h1 className="post__content--h1">{title}</h1>
           <h3 className="post__content--h3">
             <span className="post__content--upArrow">&#9650;</span>
-            {points === null ? "None" : points} |{" "}
-            {author === null ? "None" : author} | {createdAt.split("T")[0]}
+            {points === null ? 0 : points} points by{" "}
+            {author === null ? (
+              "None"
+            ) : (
+              <a
+                className="post__content--a"
+                href={`https://news.ycombinator.com/user?id=${author}`}
+              >
+                {author}
+              </a>
+            )}{" "}
+            | {createdAt.split("T")[0]}
           </h3>
-          <p className="post__content--p">Comments:</p>
+          {data.length === 0 ? (
+            <p className="post__content--p">No comments yet.</p>
+          ) : (
+            <p className="post__content--p">Comments:</p>
+          )}
           {data.map((item, key) => {
             return (
               <div key={key} className="post__content--menu">
@@ -60,7 +73,16 @@ export default function Post() {
                 />
                 <p className="post__content--menu-data">
                   {item.created_at.split("T")[0]} |{" "}
-                  {item.author === null ? "None" : item.author}
+                  {item.author === null ? (
+                    "None"
+                  ) : (
+                    <a
+                      className="post__content--a"
+                      href={`https://news.ycombinator.com/user?id=${item.author}`}
+                    >
+                      {item.author}
+                    </a>
+                  )}
                 </p>
               </div>
             );
