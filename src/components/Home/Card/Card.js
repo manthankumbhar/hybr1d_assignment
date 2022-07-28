@@ -1,6 +1,7 @@
 import moment from "moment";
 import React from "react";
 import "./Card.scss";
+import newTabImg from "../../../assets/new_tab_2.png";
 
 export default function Card({
   createdAt,
@@ -19,6 +20,7 @@ export default function Card({
       <div className="card__content">
         <a href={url} className="card__content--h1">
           {title}
+          <img src={newTabImg} className="card__content--img" alt="new tab" />
         </a>
         <div className="card__content--bottom">
           by{" "}
