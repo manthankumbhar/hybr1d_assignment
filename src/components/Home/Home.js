@@ -17,6 +17,7 @@ export default function Home({ updatedTag }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setCurrentPage(0);
     setTag(updatedTag);
   }, [updatedTag]);
 
