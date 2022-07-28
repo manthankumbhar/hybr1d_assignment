@@ -6,7 +6,6 @@ import Home from "./components/Home/Home";
 import Post from "./components/Post/Post";
 
 function App() {
-  const [updatedQuery, setUpdatedQuery] = useState("");
   const [updatedTag, setUpdatedTag] = useState("");
 
   return (
@@ -16,7 +15,7 @@ function App() {
         <Link
           className="App__top--btn"
           to="/"
-          onClick={() => setUpdatedQuery("")}
+          onClick={() => setUpdatedTag("story")}
         >
           Home
         </Link>
@@ -43,11 +42,7 @@ function App() {
         </Link>
       </div>
       <Routes>
-        <Route
-          path="/"
-          exact
-          element={<Home updatedQuery={updatedQuery} updatedTag={updatedTag} />}
-        />
+        <Route path="/" exact element={<Home updatedTag={updatedTag} />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="*" element={<h1>Error 404, page not found.</h1>} />
       </Routes>

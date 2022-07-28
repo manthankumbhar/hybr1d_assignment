@@ -7,7 +7,7 @@ import Card from "./Card/Card";
 import ReactPaginate from "react-paginate";
 import debounce from "lodash.debounce";
 
-export default function Home({ updatedQuery, updatedTag }) {
+export default function Home({ updatedTag }) {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
@@ -15,10 +15,6 @@ export default function Home({ updatedQuery, updatedTag }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setQuery(updatedQuery);
-  }, [updatedQuery]);
 
   useEffect(() => {
     setTag(updatedTag);
