@@ -7,10 +7,11 @@ import Card from "./Card/Card";
 import ReactPaginate from "react-paginate";
 import debounce from "lodash.debounce";
 
-export default function Home({ updatedQuery }) {
+export default function Home({ updatedQuery, updatedTag }) {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
+  const [tag, setTag] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -20,13 +21,18 @@ export default function Home({ updatedQuery }) {
   }, [updatedQuery]);
 
   useEffect(() => {
+    setTag(updatedTag);
+  }, [updatedTag]);
+
+  useEffect(() => {
     setLoading(true);
     async function fetchData() {
       try {
         const res = await axios.get(
-          `https://hn.algolia.com/api/v1/search_by_date?query=${query}&page=${currentPage}&tags=story&hitsPerPage=25`
+          `https://hn.algolia.com/api/v1/search_by_date?query=${query}&page=${currentPage}&tags=${
+            tag === "" ? "story" : tag
+          }&hitsPerPage=25`
         );
-        console.log(res);
         setData(res.data["hits"]);
         setTotalPages(res.data["nbPages"]);
       } catch (error) {
@@ -36,7 +42,7 @@ export default function Home({ updatedQuery }) {
       }
     }
     fetchData();
-  }, [query, navigate, currentPage]);
+  }, [query, navigate, currentPage, tag]);
 
   const handlePageChange = useCallback((e) => {
     setCurrentPage(e.selected);

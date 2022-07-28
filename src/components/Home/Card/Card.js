@@ -18,7 +18,12 @@ export default function Card({
     <div className="card">
       <span className="card__points">{points}</span>
       <div className="card__content">
-        <a href={url} className="card__content--h1">
+        <a
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          className="card__content--h1"
+        >
           {title}
           <img src={newTabImg} className="card__content--img" alt="new tab" />
         </a>

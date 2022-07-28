@@ -1,5 +1,5 @@
 .post {
-  margin: 2rem auto;
+  margin: 0 auto;
   width: 70vw;
   background-color: #ffffff;
   padding: 2rem;
@@ -56,7 +56,6 @@
     }
 
     &--menu {
-      background-color: whitesmoke;
       display: flex;
       flex-direction: column;
       justify-content: center;

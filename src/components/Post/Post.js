@@ -18,7 +18,6 @@ export default function Post() {
     setLoading(true);
     async function fetchData() {
       const res = await axios.get(`https://hn.algolia.com/api/v1/items/${id}`);
-      console.log(res);
       setTitle(res.data["title"]);
       setPoints(res.data["points"]);
       setAuthor(res.data["author"]);
