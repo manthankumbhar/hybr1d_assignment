@@ -17,7 +17,11 @@ export default function Card({
         <a href={url} className="card__h1">
           <span>{title}</span>
         </a>
-        <a href={url === null ? null : url} className="card__anchor">
+        <a
+          href={url}
+          style={url === null ? { display: "none" } : null}
+          className="card__anchor"
+        >
           (check more)
         </a>
       </div>
