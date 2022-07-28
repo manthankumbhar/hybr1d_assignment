@@ -13,15 +13,21 @@
     margin-bottom: 3rem;
 
     height: 3.5rem;
-    width: 94.5vw;
+    width: 70vw;
     border: none;
     box-shadow: rgb(15 15 15 / 10%) 0px 0px 0px 1px inset;
 
-    display: flex;
     &:focus {
       box-shadow: 0 0 5px rgba(81, 203, 238, 1);
       outline: none;
     }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   &__bottom {

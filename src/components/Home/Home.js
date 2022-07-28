@@ -7,13 +7,17 @@ import Card from "./Card/Card";
 import ReactPaginate from "react-paginate";
 import debounce from "lodash.debounce";
 
-export default function Home() {
+export default function Home({ updatedQuery }) {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setQuery(updatedQuery);
+  }, [updatedQuery]);
 
   useEffect(() => {
     setLoading(true);
@@ -56,19 +60,22 @@ export default function Home() {
             <CircularProgress size={30} color="secondary" />
           </div>
         ) : (
-          data.map((item) => {
-            return (
-              <Card
-                objectID={item.objectID}
-                title={item.title}
-                author={item.author}
-                url={item.url}
-                points={item.points}
-                numComments={item.num_comments}
-                key={item.objectID}
-              />
-            );
-          })
+          <div className="home__content">
+            {data.map((item) => {
+              return (
+                <Card
+                  createdAt={item.created_at}
+                  objectID={item.objectID}
+                  title={item.title}
+                  author={item.author}
+                  url={item.url}
+                  points={item.points}
+                  numComments={item.num_comments}
+                  key={item.objectID}
+                />
+              );
+            })}
+          </div>
         )}
       </div>
       <ReactPaginate

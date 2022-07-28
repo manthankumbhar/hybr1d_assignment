@@ -1,21 +1,54 @@
 .card {
   background-color: #f0f0f0;
-  padding: 1rem;
   text-align: left;
+  width: 70vw;
 
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  // flex-direction: column;
+  align-items: center;
   transition: all 0.3s;
+  padding: 1rem;
+  border-bottom: 1px solid lightblue;
 
-  &__h1 {
-    margin-left: 1rem;
-    background-color: #ffff33;
+  &__points {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    font-size: 1.4rem;
-    text-decoration: none;
-    color: black;
-    font-weight: 600;
+    width: 7rem;
+    color: #ff6600;
+    font-size: 1.7rem;
+    font-weight: 700;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    &--h1 {
+      font-size: 1.4rem;
+      text-decoration: none;
+      color: #34495e;
+      font-weight: 700;
+    }
+
+    &--bottom {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+
+      color: #828282;
+
+      &-author {
+        color: inherit;
+
+        font-weight: 500;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 
   &__anchor {
@@ -35,14 +68,6 @@
     margin-right: 1rem;
 
     font-size: 1.2rem;
-  }
-
-  &__points {
-    text-align: left;
-    margin-left: 1rem;
-    margin-top: 1rem;
-
-    color: grey;
   }
 
   &__upArrow {

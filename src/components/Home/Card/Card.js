@@ -1,7 +1,9 @@
+import moment from "moment";
 import React from "react";
 import "./Card.scss";
 
 export default function Card({
+  createdAt,
   objectID,
   title,
   url,
@@ -13,32 +15,25 @@ export default function Card({
 
   return (
     <div className="card">
-      <div>
-        <a href={url} className="card__h1">
-          <span>{title}</span>
+      <span className="card__points">{points}</span>
+      <div className="card__content">
+        <a href={url} className="card__content--h1">
+          {title}
         </a>
-        <a
-          href={url}
-          style={url === null ? { display: "none" } : null}
-          className="card__anchor"
-        >
-          (check more)
-        </a>
+        <div className="card__content--bottom">
+          by{" "}
+          <a
+            className="card__content--bottom-author"
+            href={`https://news.ycombinator.com/user?id=${author}`}
+          >
+            {author}
+          </a>{" "}
+          about {moment.utc(createdAt).local().startOf("seconds").fromNow()} |{" "}
+          <a className="card__comments" href={`/post/${objectID}`}>
+            {numComments} comments
+          </a>
+        </div>
       </div>
-      <p className="card__points">
-        <span className="card__upArrow">&#9650;</span>
-        {points} points by{" "}
-        <a
-          className="card__comments"
-          href={`https://news.ycombinator.com/user?id=${author}`}
-        >
-          {author}
-        </a>{" "}
-        |{" "}
-        <a className="card__comments" href={`/post/${objectID}`}>
-          {numComments} comments
-        </a>
-      </p>
     </div>
   );
 }

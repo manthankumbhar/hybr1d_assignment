@@ -2,9 +2,8 @@ import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
 import "./Post.scss";
-import homeImg from "../../assets/home.png";
+import moment from "moment";
 
 export default function Post() {
   const { id } = useParams();
@@ -38,9 +37,6 @@ export default function Post() {
         </div>
       ) : (
         <div className="post__content">
-          <Link to="/" className="post__content--homeLink">
-            <img className="post__content--img" alt="home" src={homeImg} />
-          </Link>
           <h1 className="post__content--h1">{title}</h1>
           <h3 className="post__content--h3">
             <span className="post__content--upArrow">&#9650;</span>
@@ -55,7 +51,7 @@ export default function Post() {
                 {author}
               </a>
             )}{" "}
-            | {createdAt.split("T")[0]}
+            | {moment.utc(createdAt).local().startOf("seconds").fromNow()}
           </h3>
           {data.length === 0 ? (
             <p className="post__content--p">No comments yet.</p>
@@ -72,7 +68,12 @@ export default function Post() {
                   }}
                 />
                 <p className="post__content--menu-data">
-                  {item.created_at.split("T")[0]} |{" "}
+                  {moment
+                    .utc(item.created_at)
+                    .local()
+                    .startOf("seconds")
+                    .fromNow()}{" "}
+                  |{" "}
                   {item.author === null ? (
                     "None"
                   ) : (
